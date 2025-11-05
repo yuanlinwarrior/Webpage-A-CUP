@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>意見表單</title>
+  <style>
+    :root{
+      --bg: #f7f7f9;
+      --card: #ffffff;
+      --accent: #3b82f6;
+      --text: #111827;
+      --muted: #6b7280;
+      --radius: 10px;
+    }
+
+    body{
+      margin:0;
+      font-family: system-ui, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
+      background:  #d9e7a9;
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      padding:24px;
+    }
+
+    .form-card{
+      width:100%;
+      max-width:720px;
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+      padding:28px;
+    }
+
+    .form-card h2{
+      margin:0 0 12px 0;
+      font-size:20px;
+      letter-spacing:0.2px;
+    }
+
+    .form-card p.lead{
+      margin:0 0 20px 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+
+    /* 單欄時寬度調整（手機） */
+    @media (max-width:640px){
+      .form-grid{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    label{
+      display:block;
+      margin-bottom:6px;
+      font-size:13px;
+      color: #111827;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    textarea{
+      width:100%;
+      box-sizing:border-box;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #e6e9ee;
+      background: #fff;
+      font-size:15px;
+      color:var(--text);
+      transition: box-shadow .15s ease, border-color .15s ease;
+    }
+
+    input:focus,
+    textarea:focus{
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 6px 18px rgba(59,130,246,0.12);
+    }
+
+    /* 建議欄較大 */
+    .full-width { grid-column: 1 / -1; }
+
+    textarea{
+      min-height:160px; /* 比較大的輸入框 */
+      resize:vertical;
+      line-height:1.5;
+    }
+
+    .small-note{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:6px;
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-top:18px;
+      justify-content:flex-end;
+    }
+
+    button.btn{
+      background:var(--accent);
+      color:white;
+      border: none;
+      padding:10px 16px;
+      border-radius:8px;
+      font-size:15px;
+      cursor:pointer;
+      box-shadow: 0 6px 18px rgba(59,130,246,0.12);
+    }
+
+    button.btn:active{ transform: translateY(1px); }
+
+    button.btn--ghost{
+      background:transparent;
+      color:var(--text);
+      border:1px solid #e6e9ee;
+      padding:10px 14px;
+    }
+
+    .notice{
+      font-size:14px;
+      color: #065f46;
+      background: #ecfdf5;
+      border:1px solid #bbf7d0;
+      padding:10px 12px;
+      border-radius:8px;
+      display:none;
+    }
+
+    .notice.show{ display:block; }
+
+    /* 🔹 導覽列固定在上方 */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  z-index: 1000;
+  padding: 15px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.navbar ul {
+  list-style: none;
+  display: inline-flex;
+  gap: 25px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #848484;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+/* 🔹 導覽列內容 */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  position: relative; /* 讓子元素絕對定位時以此為基準 */
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  padding: 8px 16px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+/* 🔸 父項需設為相對定位 */
+.dropdown-parent {
+  position: relative;
+}
+
+/* 🔸 下拉選單初始隱藏 */
+.dropdown-menu {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  background-color: #fff;
+  min-width: 150px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 99;
+  transition: opacity 0.3s ease;
+}
+
+/* 🔸 滑鼠移到父層時顯示 */
+.dropdown-parent:hover .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* 🔸 下拉選單內的連結樣式 */
+.dropdown-menu a {
+  display: block;
+  color: #333;
+  padding: 10px 15px;
+}
+
+.dropdown-menu a:hover {
+  background-color: #eee;
+}
+  </style>
+</head>
+<body>
+ <!-- 🔸 導覽列 -->
+  <header class="navbar">
+    <nav>
+      <ul>
+        <li><a href="index.html">SHOP</a></li>
+        <li><a href="a-cup-product.html" class="active">SPECIAL COFFEE</a></li>
+        <li class="dropdown-parent">
+          <a href="#" id="otherBtn">OTHER ▼</a>
+          <ul class="dropdown-menu">
+          <li><a href="customer-service.html">意見回饋</a></li>
+          <li><a href="sponsor.html">贊助洽談</a></li>
+          <li><a href="faq.html">常見問題</a></li>
+         </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main class="form-card" role="main">
+    <h2>意見回饋表單</h2>
+    <p class="lead">感謝您提供建議！請填寫以下資訊，我們會盡快處理。</p>
+
+    <form id="feedbackForm" novalidate>
+      <div class="form-grid">
+        <div>
+          <label for="name">姓名 <span aria-hidden="true">*</span></label>
+          <input id="name" name="name" type="text" placeholder="例如：陳小美" required aria-required="true">
+        </div>
+
+        <div>
+          <label for="phone">電話 <span aria-hidden="true">*</span></label>
+          <input id="phone" name="phone" type="tel" placeholder="例如：0912345678" required
+                 pattern="[0-9\-+\s()]{7,20}" title="請輸入電話，允許數字及 - + 空格 (7–20 字元)">
+        </div>
+
+        <div style="grid-column:1 / -1;">
+          <label for="email">信箱 <span aria-hidden="true">*</span></label>
+          <input id="email" name="email" type="email" placeholder="example@example.com" required>
+          <div class="small-note">我們僅用此信箱回覆與您意見相關的訊息。</div>
+        </div>
+
+        <div class="full-width">
+          <label for="suggestion">建議 / 回饋內容 <span aria-hidden="true">*</span></label>
+          <textarea id="suggestion" name="suggestion" placeholder="請在此輸入您的建議（請盡量詳細）" required></textarea>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="notice" id="successNotice" role="status" aria-live="polite"></div>
+        <button type="button" class="btn--ghost" id="resetBtn">清除</button>
+        <button type="submit" class="btn">送出</button>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    // 簡單前端互動：表單驗證 + 顯示送出成功訊息（示範用，實際請連後端 API）
+    const form = document.getElementById('feedbackForm');
+    const notice = document.getElementById('successNotice');
+    const resetBtn = document.getElementById('resetBtn');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault(); // 暫時阻止實際送出，方便前端測試
+
+      // 使用 HTML5 驗證 API
+      if (!form.checkValidity()) {
+        // 若有錯誤，讓瀏覽器顯示訊息
+        form.reportValidity();
+        return;
+      }
+
+      // 取得表單資料（可以改成 fetch() 傳到後端）
+      const data = {
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        email: form.email.value.trim(),
+        suggestion: form.suggestion.value.trim()
+      };
+
+      // 範例回饋：顯示收件成功訊息並清除表單
+      notice.textContent = `已收到 ${data.name} 的意見，感謝您的回饋！`;
+      notice.classList.add('show');
+
+      // 清空表單（保留訊息顯示）
+      form.reset();
+
+      // 3 秒後自動隱藏成功訊息（可依需求調整）
+      setTimeout(() => {
+        notice.classList.remove('show');
+        notice.textContent = '';
+      }, 3000);
+
+      // 若要把資料送到後端，範例：
+      // fetch('/api/feedback', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) })
+      //   .then(r => r.json()).then(result => console.log(result));
+    });
+
+    // 清除按鈕
+    resetBtn.addEventListener('click', () => {
+      form.reset();
+      notice.classList.remove('show');
+      notice.textContent = '';
+    });
+  </script>
+</body>
+</html>

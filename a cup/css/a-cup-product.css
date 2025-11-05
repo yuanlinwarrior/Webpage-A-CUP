@@ -1,0 +1,169 @@
+.banner {
+  padding-top: 30px; /* 預留導覽列高度 */
+  position: relative;
+  width: 100%;
+  height: 850px; /* 可自行調整 */
+  overflow: hidden;
+}
+
+.banner-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.banner-img.active {
+  opacity: 1;
+}
+
+
+/* 🔹 商品頁樣式 */
+.product-page {
+  text-align: center;
+  background-color: #f8f8f3;
+  min-height: 100vh;
+}
+
+.product-page h1 {
+  color: #3c2f1e;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.product-page .intro {
+  color: #555;
+  font-size: 18px;
+  margin-bottom: 50px;
+}
+
+.product-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 0 10%;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 220px;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 15px 15px 0 0;
+}
+
+.product-card h3 {
+  color: #3c2f1e;
+  font-size: 18px;
+  margin: 12px 0 5px;
+}
+
+.product-card p {
+  color: #555;
+  font-size: 14px;
+  padding: 0 15px 15px;
+  line-height: 1.5;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 60px;
+  padding: 12px 25px;
+  background-color: #d9e7a9;
+  border-radius: 25px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #c7da8f;
+}
+
+
+
+/* 📱 手機版（螢幕寬度小於768px） */
+@media (max-width: 768px) {
+  /* 🔹 banner 調整 */
+  .banner {
+    height: 50vh; /* 改為視窗高度的一半，避免太高 */
+    padding-top: 60px; /* 導覽列在手機通常比較高 */
+  }
+
+  .banner-img {
+    object-position: center; /* 確保焦點置中 */
+  }
+
+  /* 🔹 商品頁調整 */
+  .product-page {
+    padding-top: 100px;
+  }
+
+  .product-page h1 {
+    font-size: 24px;
+  }
+
+  .product-page .intro {
+    font-size: 16px;
+    margin-bottom: 30px;
+    padding: 0 20px;
+  }
+
+  .product-grid {
+    gap: 20px;
+    padding: 0 5%;
+  }
+
+  .product-card {
+    width: 80%; /* 單欄顯示 */
+  }
+
+  .product-card h3 {
+    font-size: 16px;
+  }
+
+  .product-card p {
+    font-size: 13px;
+  }
+
+  .back-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+/* 💻 平板版（768px～1024px） */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .banner {
+    height: 70vh; /* 平板顯示稍高 */
+  }
+
+  .product-grid {
+    gap: 30px;
+  }
+
+  .product-card {
+    width: 45%; /* 兩欄排列 */
+  }
+
+  .product-page h1 {
+    font-size: 30px;
+  }
+
+  .product-page .intro {
+    font-size: 17px;
+  }
+}

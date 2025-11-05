@@ -1,0 +1,403 @@
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  margin: 0;
+  background-color: #f8f8f3;
+  color: #222;
+  min-height: 200vh; /* 讓整頁變成兩倍螢幕高，可滾動 */
+}
+
+/* 🔹 導覽列固定在上方 */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  z-index: 1000;
+  padding: 15px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.navbar ul {
+  list-style: none;
+  display: inline-flex;
+  gap: 25px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #848484;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+
+/* 🔹 導覽列內容 */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  position: relative; /* 讓子元素絕對定位時以此為基準 */
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  padding: 8px 16px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+/* 🔸 父項需設為相對定位 */
+.dropdown-parent {
+  position: relative;
+}
+
+/* 🔸 下拉選單初始隱藏 */
+.dropdown-menu {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  background-color: #fff;
+  min-width: 150px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 99;
+  transition: opacity 0.3s ease;
+}
+
+/* 🔸 滑鼠移到父層時顯示 */
+.dropdown-parent:hover .dropdown-menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* 🔸 下拉選單內的連結樣式 */
+.dropdown-menu a {
+  display: block;
+  color: #333;
+  padding: 10px 15px;
+}
+
+.dropdown-menu a:hover {
+  background-color: #eee;
+}
+
+/* banner */
+.banner img {
+  padding-top: 30px; /* 預留導覽列高度 */
+  width: 100%;       /* 預設寬度填滿容器 */
+  max-height: 100vh; /* 限制最大高度，可依需求調整 */
+  object-fit: cover; /* 保持比例裁切，避免變形 */
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 30px;
+}
+
+/* 中導覽列 */
+.tabs {
+  display: flex;
+  justify-content: center;
+  background-color: #3c2f1e;
+}
+
+.tab {
+  background-color: #c8d88f;
+  border: none;
+  color: #333;
+  padding: 20px 100px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 24px;
+}
+
+.tab:hover,
+.tab.active {
+  background-color: #f0f5ce;
+  color: #000;
+}
+
+/* 🔸 導覽列整體 */
+/*.tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3c2f1e; /* 深咖啡色背景 
+}
+
+/* 🔸 各按鈕基礎樣式 
+.tab {
+  border: none;
+  color: #333;
+  padding: 20px 100px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-size: 24px;
+  position: relative;
+  overflow: hidden; /* 確保圖片不超出按鈕邊界 
+}
+
+/* 🔸 各按鈕底色 
+.tab.founder { background-color: #A9B27C; }   /* 深綠 
+.tab.history { background-color: #C3CE90; }   /* 中綠 
+.tab.intro   { background-color: #d9e7a9; }   /* 淺綠 
+
+/* 🔸 滑鼠移入時：字消失、顯示圖片 
+.tab:hover {
+  color: transparent; /* 字消失 
+}
+
+/* 🔸 預先設定hover圖片 
+.tab::after {
+  content: "";
+  position: absolute;
+  inset: 0; /* 上下左右皆 0 
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+/* 🔸 各自圖片設定（記得圖片放在相對路徑中）
+.tab.founder::after {
+  background-image: url("images/founder.png");
+}
+
+.tab.history::after {
+  background-image: url("images/history.png");
+}
+
+.tab.intro::after {
+  background-image: url("images/intro.png");
+}
+
+/* 滑鼠移入圖片顯示 
+.tab:hover::after {
+  opacity: 1;
+}*/
+
+
+/* 內容區 */
+.content {
+  width: 100%;       /* 預設寬度填滿容器 */
+  height: 200px; /* 限制最大高度，可依需求調整 */
+  display: none;
+  background-color: #d9e7a9;
+  padding: 100px; /*中導覽內容*/
+  transition: opacity 0.3s ease;
+}
+#introduction {
+  background-color: #d9e7a9; /* 淡綠色 */
+}
+#history {
+  background-color: #C3CE90; 
+}
+#founder {
+  background-color: #A9B27C; 
+}
+.content.active {
+  display: block;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* banner的shop now */
+.shop-btn {
+  background-color: #d9e7a9;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* map */
+.map img {
+  padding-top: 5px; /* 預留導覽列高度 */
+  width: 100%;       
+  max-height: 100vh; 
+  object-fit: cover; /* 保持比例裁切，避免變形 */
+}
+
+/* 功能選單 */
+.menu {
+  background-color: #352917;
+  padding: 15px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-btn {
+  background-color: #DAE5A5;
+  color: #352917;
+  border: none;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+
+/* 品牌介紹 */
+.brand {
+  padding: 40px 80px;
+  line-height: 1.8;
+  color: #333;
+}
+
+.brand h2 {
+  text-align: left;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.brand p {
+  text-align: justify;
+}
+
+/* 推薦商品區塊 */
+.products-section h2 {
+  text-align: center;
+  font-size: 32px;
+  color: #4a3b00;
+  margin-bottom: 40px;
+}
+
+.product-category {
+  margin-bottom: 60px;
+}
+
+.product-category h3 {
+  text-align: center;
+  font-size: 22px;
+  color: #4a3b00;
+  position: relative; /* 或 absolute, fixed */
+  top: 10px;          /* 向下移動 10 像素 */
+}
+
+.product-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  background-color: #fff;
+  width: 180px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding-bottom: 10px;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 12px 12px 0 0;
+}
+
+.product-card h4 {
+  margin: 10px 0 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.product-card p {
+  font-size: 12px;
+  color: #555;
+  margin: 0 0 10px;
+}
+.product-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 220px;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+/* 手機版（小於768px） */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .tab {
+    padding: 15px 40px;
+    font-size: 18px;
+  }
+
+  .content {
+    padding: 50px 20px;
+  }
+
+  .product-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .product-card {
+    width: 80%;
+  }
+
+  .banner img, .map img {
+    max-height: 60vh;
+  }
+
+  .brand {
+    padding: 20px;
+  }
+}
+
+/* 平板版（768px～1024px） */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .tab {
+    padding: 20px 60px;
+    font-size: 20px;
+  }
+
+  .product-row {
+    gap: 30px;
+  }
+
+  .product-card {
+    width: 45%;
+  }
+}

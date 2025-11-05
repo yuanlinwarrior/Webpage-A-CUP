@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPECIAL COFFEE - A CUP</title>
+  <link rel="stylesheet" href="css/a-cup-product.css" />
+  <link rel="stylesheet" href="css/a-cup.css" />
+</head>
+<body>
+  <div class="banner">
+  <img src="https://raw.githubusercontent.com/yuanlinwarrior/114-1ntut/bccd66c7cd5d045c66297787786173f42a8545db/a%20cup%20%E5%9C%96%E6%AA%94/banner%20coffee%2001.jpg" class="banner-img active">
+  <img src="https://raw.githubusercontent.com/yuanlinwarrior/114-1ntut/bccd66c7cd5d045c66297787786173f42a8545db/a%20cup%20%E5%9C%96%E6%AA%94/banner%20coffee%2002.jpg" class="banner-img">
+  <img src="https://raw.githubusercontent.com/yuanlinwarrior/114-1ntut/bccd66c7cd5d045c66297787786173f42a8545db/a%20cup%20%E5%9C%96%E6%AA%94/banner%20coffee%2003.jpg" class="banner-img">
+  <img src="https://raw.githubusercontent.com/yuanlinwarrior/114-1ntut/bccd66c7cd5d045c66297787786173f42a8545db/a%20cup%20%E5%9C%96%E6%AA%94/banner%20coffee%2004.jpg" class="banner-img">
+</div>
+  <!-- 🔸 導覽列 -->
+  <header class="navbar">
+    <nav>
+      <ul>
+        <li><a href="index.html">SHOP</a></li>
+        <li><a href="a-cup-product.html" class="active">SPECIAL COFFEE</a></li>
+        <li class="dropdown-parent">
+          <a href="#" id="otherBtn">OTHER ▼</a>
+         <ul class="dropdown-menu" id="dropdownMenu">
+          <li><a href="customer-service.html">意見回饋</a></li>
+          <li><a href="sponsor.html">贊助洽談</a></li>
+          <li><a href="faq.html">常見問題</a></li>
+        </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <script>
+  let current = 0;
+  const images = document.querySelectorAll('.banner-img');
+  const total = images.length;
+
+  setInterval(() => {
+    // 移除目前的 active
+    images[current].classList.remove('active');
+    // 下一張（循環回第一張）
+    current = (current + 1) % total;
+    // 顯示下一張
+    images[current].classList.add('active');
+  }, 3000); // 每3秒換一張
+</script>
+
+  <!-- 🔸 商品展示 -->
+  <main class="product-page">
+    <h1>✦ SPECIAL COFFEE ✦</h1>
+    <p class="intro">精選特調咖啡豆與限量甜點組合，帶你體驗「誒咖」的風味哲學。</p>
+
+    <section class="product-grid">
+      <div class="product-card">
+        <img src="https://raw.githubusercontent.com/yuanlinwarrior/114-1ntut/d0b2b227a8d397c60169f8959ccf40dbbc430a92/a%20cup%20%E5%9C%96%E6%AA%94/LINE_ALBUM_%E5%92%96%E5%95%A1%E5%80%91_251103_1.jpg" alt="Espresso Blend">
+        <h3>冰美式奶酒</h3>
+        <p>成人戀愛的滋味</p>
+      </div>
+
+      <div class="product-card">
+        <img src="https://raw.githubusercontent.com/yuanlinwarrior/114-1ntut/d0b2b227a8d397c60169f8959ccf40dbbc430a92/a%20cup%20%E5%9C%96%E6%AA%94/LINE_ALBUM_%E5%92%96%E5%95%A1%E5%80%91_251103_3.jpg" alt="Citrus Light Roast">
+        <h3>嘻嘻你咖啡</h3>
+        <p>好笑嗎超好笑</p>
+      </div>
+
+      <div class="product-card">
+        <img src="https://raw.githubusercontent.com/yuanlinwarrior/114-1ntut/d0b2b227a8d397c60169f8959ccf40dbbc430a92/a%20cup%20%E5%9C%96%E6%AA%94/LINE_ALBUM_%E5%92%96%E5%95%A1%E5%80%91_251103_5.jpg" alt="Hazelnut Latte">
+        <h3>嘔吐巧克力奶昔</h3>
+        <p>由喝醉的黑人店長親口製作</p>
+      </div>
+
+      <div class="product-card">
+        <img src="https://github.com/yuanlinwarrior/114-1ntut/blob/main/a%20cup/%E5%9C%96%E6%AA%94/LINE_ALBUM_%E5%92%96%E5%95%A1%E5%80%91_251103_6.jpg?raw=true" alt="Signature Drip Bag">
+        <h3>嘔吐焦糖奶昔</h3>
+        <p>由喝醉的店長親口製作</p>
+      </div>
+
+      <div class="product-card">
+        <img src="https://github.com/yuanlinwarrior/114-1ntut/blob/main/a%20cup/%E5%9C%96%E6%AA%94/LINE_ALBUM_%E5%92%96%E5%95%A1%E5%80%91_251103_2.jpg?raw=true" alt="Signature Drip Bag">
+        <h3>發霉冰沒事</h3>
+        <p>沒事。</p>
+      </div>
+
+      <div class="product-card">
+        <img src="https://github.com/yuanlinwarrior/114-1ntut/blob/main/a%20cup/%E5%9C%96%E6%AA%94/LINE_ALBUM_%E5%92%96%E5%95%A1%E5%80%91_251103_4.jpg?raw=true" alt="Signature Drip Bag">
+        <h3>冰美式</h3>
+        <p>我最喜歡路易莎的</p>
+      </div>
+    
+      <div class="product-card">
+        <img src="https://raw.githubusercontent.com/yuanlinwarrior/114-1ntut/d0b2b227a8d397c60169f8959ccf40dbbc430a92/a%20cup%20%E5%9C%96%E6%AA%94/LINE_ALBUM_%E5%92%96%E5%95%A1%E5%80%91_251103_7.jpg" alt="Signature Drip Bag">
+        <h3>刮鬍泡泡</h3>
+        <p>黑人店長早上刮鬍所使用</p>
+      </div>
+  
+
+    <div class="product-card">
+        <img src="https://github.com/yuanlinwarrior/114-1ntut/blob/main/a%20cup/%E5%9C%96%E6%AA%94/LINE_ALBUM_%E5%92%96%E5%95%A1%E5%80%91_251103_8.jpg?raw=true" alt="Signature Drip Bag">
+        <h3>淡淡的澀谷絲襪奶茶</h3>
+        <p>旦旦雨季爛台北的產物</p>
+      </div>
+    </section>
+    <a href="index.html" class="back-btn">← 返回首頁</a>
+  </main>
+
+  <script src="js/a-cup.js"></script>
+</body>
+</html>
